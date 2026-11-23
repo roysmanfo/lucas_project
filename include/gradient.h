@@ -1,38 +1,39 @@
 #ifndef GRADIENT_H
 #define GRADIENT_H
 
-double f1(double x, double y);
-double dx1(double x, double y);
-double dy1(double x, double y);
+#include <vec.h>
 
-double f2(double x, double y);
-double dx2(double x, double y);
-double dy2(double x, double y);
+double f1(const Vec &v);
+double dx1(const Vec &v);
+double dy1(const Vec &v);
 
-double f3(double x, double y);
-double dx3(double x, double y);
-double dy3(double x, double y);
+double f2(const Vec &v);
+double dx2(const Vec &v);
+double dy2(const Vec &v);
 
-double f4(double x, double y);
-double dx4(double x, double y);
-double dy4(double x, double y);
+double f3(const Vec &v);
+double dx3(const Vec &v);
+double dy3(const Vec &v);
 
-double f5(double x, double y);
-double dx5(double x, double y);
-double dy5(double x, double y);
+double f4(const Vec &v);
+double dx4(const Vec &v);
+double dy4(const Vec &v);
 
-double f6(double x, double y);
-double dx6(double x, double y);
-double dy6(double x, double y);
+double f5(const Vec &v);
+double dx5(const Vec &v);
+double dy5(const Vec &v);
 
-double f7(double x, double y);
-double dx7(double x, double y);
-double dy7(double x, double y);
+double f6(const Vec &v);
+double dx6(const Vec &v);
+double dy6(const Vec &v);
 
-double f8(double x, double y);
-double dx8(double x, double y);
-double dy8(double x, double y);
+double f7(const Vec &v);
+double dx7(const Vec &v);
+double dy7(const Vec &v);
 
-double gradient_norm(double dx, double dy);
+double f8(const Vec &v);
+double dx8(const Vec &v);
+double dy8(const Vec &v);
+
 double error(double k, double m);
 #endif
