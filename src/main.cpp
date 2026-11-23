@@ -46,5 +46,7 @@ int main(int argc, char const *argv[]) {
     grad = f.gradient(p);
   }
 
+  std::cout << "grad: " << grad << std::endl;
+
   return 0;
 }

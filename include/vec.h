@@ -1,5 +1,8 @@
 #ifndef VEC_H
 #define VEC_H
+
+#include <ostream>
+
 struct Vec {
   double x = 0.0;
   double y = 0.0;
@@ -18,4 +21,7 @@ void operator+=(Vec &a, const Vec &b);
 void operator-=(Vec &a, const Vec &b);
 void operator*=(Vec &v, const double a);
 double dot(const Vec &a, const Vec &b);
+
+std::ostream& operator<<(std::ostream& os, const Vec& p);
+
 #endif
