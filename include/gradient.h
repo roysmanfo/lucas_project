@@ -35,5 +35,7 @@ double f8(const Vec &v);
 double dx8(const Vec &v);
 double dy8(const Vec &v);
 
+// Calcola la differenza in valore assoluto tra il valore ottenuto (k) e il
+// minimo previsto (m)
 double error(double k, double m);
 #endif

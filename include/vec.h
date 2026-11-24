@@ -3,13 +3,19 @@
 
 #include <ostream>
 
+/*
+ * Rappresenta un punto o un vettore (x,y) in coordinate cartesiane
+ */
 struct Vec {
   double x = 0.0;
   double y = 0.0;
 
   Vec(double x, double y);
 
+  /* Restituisce la norma del vettore (x,y) */
   double length() const;
+
+  /* Restituisce il prodotto scalare con un altro vettore */
   double dot(const Vec &v) const;
 };
 
@@ -20,8 +26,10 @@ Vec operator*(const double a, const Vec &v);
 void operator+=(Vec &a, const Vec &b);
 void operator-=(Vec &a, const Vec &b);
 void operator*=(Vec &v, const double a);
+
+/* Restituisce il prodotto scalare tra due vettori */
 double dot(const Vec &a, const Vec &b);
 
-std::ostream& operator<<(std::ostream& os, const Vec& p);
+std::ostream &operator<<(std::ostream &os, const Vec &p);
 
 #endif
