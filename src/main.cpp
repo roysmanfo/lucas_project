@@ -41,7 +41,7 @@ void compute_f_min(Function f, const Vec &initial_point, double known_min,
   // Vettore gradiente calcolato in P: (dx(p), dy(p))
   Vec grad = f.gradient(p);
   for (int i = 0; (i < N) && (grad.length() >= T); i++) {
-    p -= a * grad;        // Scendo verso la direzione del gradiente
+    p -= a * grad;        // Scendo verso la direzione opposta al gradiente
     grad = f.gradient(p); // Ricalcolo il gradiente per il nuovo punto
   }
 
