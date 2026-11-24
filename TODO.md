@@ -1,4 +1,4 @@
 - [ ] IMPORTANTE: aggiornare tutti i valori di `known_min` nella funzione `compute_f_min`
-- [x] aggiornare tutti i valori di `a` nella funzione `compute_f_min`
-- [ ] aggiornare tutti i valori di `N` e `T` nella funzione `compute_f_min`
-- [ ] scrivere file con le responsabilita di ogni membro del gruppo
+- [ ] scrivere nel README le responsabilita di ogni membro del gruppo
+- [ ] Aggiungere l'output della stringa `k  p_k  f(p_k)  e_k  ||∇f(p_k)||` ogni 10 iterazioni e anche all'ultima se non è multipla di 10
+- [ ] Il punto 5 chiede diversi punti iniziali e diversi valori di a per ogni funzione. Noi abbiamo solo un p0 e un a 
