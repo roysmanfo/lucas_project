@@ -7,6 +7,11 @@ Vec::Vec(double x, double y){
   this->y = y;
 }
 
+Vec::Vec(const Vec &v) {
+  this->x = v.x;
+  this->y = v.y;
+}
+
 Vec operator+(const Vec &a, const Vec &b) { return Vec(a.x + b.x, a.y + b.y); }
 Vec operator-(const Vec &a, const Vec &b) { return Vec(a.x - b.x, a.y - b.y); }
 void operator+=(Vec &a, const Vec &b) {

@@ -11,6 +11,7 @@ struct Vec {
   double y = 0.0;
 
   Vec(double x, double y);
+  Vec(const Vec &v);
 
   /* Restituisce la norma del vettore (x,y) */
   double length() const;

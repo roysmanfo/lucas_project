@@ -2,6 +2,7 @@
 #include "gradient.h"
 #include "vec.h"
 #include <iostream>
+#include <random>
 
 /*
  * Nota sulle scelte strutturali del programma:
@@ -24,58 +25,80 @@
  * chiaramente l'implementazione delle funzioni.
  */
 
-const double T = 0.1; // Soglia per la norma del gradiente
-const int N = 100;    // Numero massimo di iterazioni
+const double T = 1e-3; // Soglia per la norma del gradiente
+const int N = 1000;    // Numero massimo di iterazioni
 
 // Funzione che calcola il minimo tramite la tecnica "gradient descent"
 // e stampa
 // - x e y del punto di minimo
 // - la funzione calcolata in quel punto
 // - L'errore rispetto al minimo reale
-void compute_f_min(Function f, const Vec &initial_point, double known_min,
+void compute_f_min(Function f, const Vec &domain, double known_min,
                    double a, double T, double N) {
 
   // Punto iniziale
-  Vec p(initial_point.x, initial_point.y);
+
+  double lower_bound = domain.x;
+  double upper_bound = domain.y;
+  Vec p(domain.x, domain.y);
 
   // Vettore gradiente calcolato in P: (dx(p), dy(p))
   Vec grad = f.gradient(p);
-  for (int i = 0; (i < N) && (grad.length() >= T); i++) {
-    p -= a * grad;        // Scendo verso la direzione opposta al gradiente
+  int k;
+  for (k = 1; (k < N) && (grad.length() >= T); k++) {
+    Vec update = a * grad;
+    p -= update;        // Scendo verso la direzione opposta al gradiente
     grad = f.gradient(p); // Ricalcolo il gradiente per il nuovo punto
+
+    // se il punto esce dal dominio, interrompi il ciclo
+    if (!(lower_bound <= p.x && p.x <= upper_bound) || !(lower_bound <= p.y && p.y <= upper_bound)){
+      p += update; // annulla l'update appena fatto
+      break;
+    };
+    // k  p_k  f(p_k)  e_k  ||∇f(p_k)||
+    if (k % 10 == 0) {
+      printf("\tk=%-3d p_k=(%-2.4f,%-2.4f) f(p_k)=%-2.4f e_k=%-2.4f grad_norm=%-2.4f\n",
+            k,
+            p.x, p.y, f.evaluate(p),
+            error(f.evaluate(p), known_min),
+            grad.length());      
+    }
   }
 
-  std::cout << "x=" << p.x << "\ty=" << p.y << "\tf(x,y)=" << f.evaluate(p)
-            << "\terror=" << error(f.evaluate(p), known_min)
-            << "\tgrad_norm=" << grad.length() << std::endl;
+    printf("\tk=%-3d p_k=(%2.4f,%-2.4f) f(p_k)=%-2.4f e_k=%-2.4f grad_norm=%-2.4f\n",
+          k,
+          p.x, p.y, f.evaluate(p),
+          error(f.evaluate(p), known_min),
+          grad.length());
+      
 }
 
 int main(int argc, char const *argv[]) {
   // NOTA: Funzioni definite in gradient.cpp
 
   std::cout << "f1: ";
-  compute_f_min(Function(f1, dx1, dy1), Vec(4, 4), 0, 1.0 / 5.0, T, N);
+  compute_f_min(Function(f1, dx1, dy1), Vec(-4, 4), 0, 1.0 / 5.0, T, N);
 
   std::cout << "f2: ";
-  compute_f_min(Function(f2, dx2, dy2), Vec(1, 1), 0, 2.0 / 25.0, T, N);
+  compute_f_min(Function(f2, dx2, dy2), Vec(-4, 4), 0, 2.0 / 25.0, T, N);
 
   std::cout << "f3: ";
-  compute_f_min(Function(f3, dx3, dy3), Vec(1.4, 1.2), 0, 1.0 / 20.0, T, N);
+  compute_f_min(Function(f3, dx3, dy3), Vec(-1.5, 1.5), 0, 1.0 / 20.0, T, N);
 
   std::cout << "f4: ";
-  compute_f_min(Function(f4, dx4, dy4), Vec(1.4, -1.4), 0, 1.0 / 20.0, T, N);
+  compute_f_min(Function(f4, dx4, dy4), Vec(-1.5, 1.5), 0, 1.0 / 20.0, T, N);
 
   std::cout << "f5: ";
   compute_f_min(Function(f5, dx5, dy5), Vec(-0.5, 0.5), 0, 3.0 / 20.0, T, N);
 
   std::cout << "f6: ";
-  compute_f_min(Function(f6, dx6, dy6), Vec(3, 3), 0, 3.0 / 10.0, T, N);
+  compute_f_min(Function(f6, dx6, dy6), Vec(-2, 2), 0, 3.0 / 10.0, T, N);
 
   std::cout << "f7: ";
-  compute_f_min(Function(f7, dx7, dy7), Vec(1, 1), 0, 1.0 / 5.0, T, N);
+  compute_f_min(Function(f7, dx7, dy7), Vec(-1.5, 1.5), 0, 1.0 / 5.0, T, N);
 
   std::cout << "f8: ";
-  compute_f_min(Function(f8, dx8, dy8), Vec(0.5, 0.5), 0, 1.0 / 10.0, T, N);
+  compute_f_min(Function(f8, dx8, dy8), Vec(-4, 4), 0, 1.0 / 10.0, T, N);
 
   return 0;
 }
