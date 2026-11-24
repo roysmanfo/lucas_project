@@ -54,13 +54,28 @@ int main(int argc, char const *argv[]) {
   // NOTA: Funzioni definite in gradient.cpp
 
   std::cout << "f1: ";
-  compute_f_min(Function(f1, dx1, dy1), Vec(4, 4), 0, 1.0 / 5.0, 1, 100);
+  compute_f_min(Function(f1, dx1, dy1), Vec(4, 4), 0, 1.0 / 5.0, T, N);
 
   std::cout << "f2: ";
-  compute_f_min(Function(f2, dx2, dy2), Vec(1, 1), 0, 1.0 / 5.0, 1, 100);
+  compute_f_min(Function(f2, dx2, dy2), Vec(1, 1), 0, 2.0 / 25.0, T, N);
 
   std::cout << "f3: ";
-  compute_f_min(Function(f3, dx3, dy3), Vec(1, 1), 0, 1.0 / 5.0, 1, 100);
+  compute_f_min(Function(f3, dx3, dy3), Vec(1.4, 1.2), 0, 1.0 / 20.0, T, N);
+
+  std::cout << "f4: ";
+  compute_f_min(Function(f4, dx4, dy4), Vec(1.4, -1.4), 0, 1.0 / 20.0, T, N);
+
+  std::cout << "f5: ";
+  compute_f_min(Function(f5, dx5, dy5), Vec(-0.5, 0.5), 0, 3.0 / 20.0, T, N);
+
+  std::cout << "f6: ";
+  compute_f_min(Function(f6, dx6, dy6), Vec(3, 3), 0, 3.0 / 10.0, T, N);
+
+  std::cout << "f7: ";
+  compute_f_min(Function(f7, dx7, dy7), Vec(1, 1), 0, 1.0 / 5.0, T, N);
+
+  std::cout << "f8: ";
+  compute_f_min(Function(f8, dx8, dy8), Vec(0.5, 0.5), 0, 1.0 / 10.0, T, N);
 
   return 0;
 }

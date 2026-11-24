@@ -1,6 +1,4 @@
-- [ ] aggiornare tutti i valori di `a` nella funzione `compute_f_min`
-- [ ] aggiornare tutti i valori di `known_min` nella funzione `compute_f_min`
+- [ ] IMPORTANTE: aggiornare tutti i valori di `known_min` nella funzione `compute_f_min`
+- [x] aggiornare tutti i valori di `a` nella funzione `compute_f_min`
 - [ ] aggiornare tutti i valori di `N` e `T` nella funzione `compute_f_min`
 - [ ] scrivere file con le responsabilita di ogni membro del gruppo
-
-
