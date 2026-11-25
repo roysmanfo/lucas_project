@@ -25,6 +25,12 @@
  * chiaramente l'implementazione delle funzioni.
  */
 
+void print_step(int k, Vec &p, double f, double e, double grad_norm) {
+  printf("\tk=%-3d p_k=(%-2.4f,%-2.4f) f(p_k)=%-2.4f e_k=%-2.4f "
+         "grad_norm=%-2.4f\n",
+         k, p.x, p.y, f, e, grad_norm);
+}
+
 // Funzione che calcola il minimo tramite la tecnica "gradient descent"
 // e stampa le varie iterazioni
 void compute_f_min(const Function &f, const Vec &domain, double a, double T,
@@ -39,24 +45,22 @@ void compute_f_min(const Function &f, const Vec &domain, double a, double T,
   // Vettore gradiente calcolato in P: (dx(p), dy(p))
   Vec grad = f.gradient(p);
   int k;
-  for (k = 1; (k < N) && (grad.length() >= T); k++) {
+  for (k = 0; (k < N) && (grad.length() >= T); k++) {
     Vec update = a * grad;
     p -= update;          // Scendo verso la direzione opposta al gradiente
     grad = f.gradient(p); // Ricalcolo il gradiente per il nuovo punto
 
     // k  p_k  f(p_k)  e_k  ||∇f(p_k)||
     if (k % 10 == 0) {
-      printf("\tk=%-3d p_k=(%-2.4f,%-2.4f) f(p_k)=%-2.4f e_k=%-2.4f "
-             "grad_norm=%-2.4f\n",
-             k, p.x, p.y, f.evaluate(p),
-             error(f.evaluate(p), f.get_known_min()), grad.length());
+      print_step(k, p, f.evaluate(p), error(f.evaluate(p), f.get_known_min()),
+                 grad.length());
     }
   }
 
-  printf(
-      "\tk=%-3d p_k=(%2.4f,%-2.4f) f(p_k)=%-2.4f e_k=%-2.4f grad_norm=%-2.4f\n",
-      k, p.x, p.y, f.evaluate(p), error(f.evaluate(p), f.get_known_min()),
-      grad.length());
+  if (k % 10 != 0) {
+    print_step(k, p, f.evaluate(p), error(f.evaluate(p), f.get_known_min()),
+               grad.length());
+  }
 }
 
 int main(int argc, char const *argv[]) {
