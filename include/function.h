@@ -12,18 +12,21 @@
 class Function {
 public:
   Function(double (*f)(const Vec &p), double (*dx)(const Vec &p),
-           double (*dy)(const Vec &p));
+           double (*dy)(const Vec &p), double known_min);
 
   /* Esegue f(p) */
-  double evaluate(const Vec &p);
+  double evaluate(const Vec &p) const;
 
   /* Restituisce (dx(p), dy(y)) */
-  Vec gradient(const Vec &p);
+  Vec gradient(const Vec &p) const;
+
+  double get_known_min() const;
 
 private:
   double (*f)(const Vec &p);
   double (*dx)(const Vec &p);
   double (*dy)(const Vec &p);
+  double known_min;
 };
 
 #endif
