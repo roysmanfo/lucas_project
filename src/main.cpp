@@ -44,12 +44,6 @@ void compute_f_min(const Function &f, const Vec &domain, double a, double T,
     p -= update;          // Scendo verso la direzione opposta al gradiente
     grad = f.gradient(p); // Ricalcolo il gradiente per il nuovo punto
 
-    // se il punto esce dal dominio, interrompi il ciclo
-    if (!(lower_bound <= p.x && p.x <= upper_bound) ||
-        !(lower_bound <= p.y && p.y <= upper_bound)) {
-      p += update; // annulla l'update appena fatto
-      break;
-    };
     // k  p_k  f(p_k)  e_k  ||∇f(p_k)||
     if (k % 10 == 0) {
       printf("\tk=%-3d p_k=(%-2.4f,%-2.4f) f(p_k)=%-2.4f e_k=%-2.4f "
