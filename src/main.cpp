@@ -2,6 +2,7 @@
 #include "gradient.h"
 #include "vec.h"
 #include <iostream>
+#include <cstdio>
 
 /*
  * Nota sulle scelte strutturali del programma:
@@ -33,7 +34,7 @@ void print_step(int k, const Vec &p, const Function &f, const Vec &grad) {
 // Funzione che calcola il minimo tramite la tecnica "gradient descent"
 // e stampa le varie iterazioni
 void compute_f_min(const Function &f, const Vec &p0, double a, double T,
-                   double N) {
+                   int N) {
 
   // Punto iniziale
   Vec p(p0.x, p0.y);
