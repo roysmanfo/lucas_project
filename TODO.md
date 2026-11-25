@@ -1,1 +1,1 @@
-- [ ] scrivere nel README le responsabilita di ogni membro del gruppo
+- [x] scrivere nel README le responsabilita di ogni membro del gruppo
