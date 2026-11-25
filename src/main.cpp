@@ -25,7 +25,7 @@
  */
 
 void print_step(int k, const Vec &p, const Function &f, const Vec &grad) {
-  printf("\tk=%-3d p_k=(%-2.4f,%-2.4f) f(p_k)=%-2.4f e_k=%.3e grad_norm=%.3e\n",
+  printf("\tk=%-3d p_k=(%-2.9f,%-2.9f) f(p_k)=%-2.9f e_k=%.3e grad_norm=%.3e\n",
          k, p.x, p.y, f.evaluate(p), error(f.evaluate(p), f.get_known_min()),
          grad.length());
 }
