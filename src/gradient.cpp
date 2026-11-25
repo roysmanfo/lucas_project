@@ -32,7 +32,7 @@ double dy7(const Vec &v) { return -std::exp(-(v.x*v.x+v.y*v.y))*(-2*v.y); }
 
 double f8(const Vec &v) { return 2 - std::cos(3.14*v.x) - std::cos(3.14*v.y); }
 double dx8(const Vec &v) { return 3.14*std::sin(3.14*v.x); }
-double dy8(const Vec &v) { return -3.14*std::sin(3.14*v.y); }
+double dy8(const Vec &v) { return 3.14*std::sin(3.14*v.y); }
 
 
 double error(double fk, double m) { return std::fabs(fk-m); }
